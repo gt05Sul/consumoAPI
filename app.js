@@ -3,6 +3,14 @@ let usuarios= [];
 const usuariosPorPagina = 9;
 const paginaAtual = 1;
 
+const modal = document.getElementById('userModal')
+
+
+const nome = document.getElementById('name')
+const sobrenome = document.getElementById('sobrenome')
+const email = document.getElementById('email')
+const phone = document.getElementById('phone')
+const avatar = document.getElementById('avatar')
 
 
 
@@ -28,6 +36,10 @@ const paginaAtual = 1;
         Swal.fire('erro' , 'nao foi possivel buascar usuario' , "error")
     }
 }
+
+
+
+
 function displayPaginado(page = 1)
 {
     const inicio = (page - 1) * usuariosPorPagina;
@@ -75,5 +87,40 @@ function displayUsers(usuarios)
             userList.appendChild(usuario);
     })
 }
+
+
+function showCreateModal() {
+    modal.style.display = 'block' 
+    modal.className = 'modal'
+}
+
+function fechar(){
+    modal.style.display = 'none'
+}       
+  
+async function post(){
+
+
+    try {
+        
+    const userData = {   
+        firstName: nome.value,
+        lastName: sobrenome.value,
+        email: email.value,
+        phone: phone.value,
+        avatar: avatar.value
+    
+    };
+    console.log(userData);
+    
+        const DadoEnviado = await axios.post(apiUrl, userData)
+        Swal.fire('Sucesso' , 'Cadastrado com sucesso' , "success")
+    } catch (erro){
+        Swal.fire('Error' , 'Não foi possivel cadastrar usuário' , "error")
+    }
+};
+
+
+
 
 document.addEventListener("DOMContentLoaded" , fetchUsuarios);
