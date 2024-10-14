@@ -87,7 +87,7 @@ function displayUsers(usuarios)
             
             userList.appendChild(usuario);
 
-            const deleteButton = document.getElementById(`delete-${user.id}`);
+        const deleteButton = document.getElementById(`delete-${user.id}`);
         deleteButton.addEventListener('click', () => deleteUser(user.id));
     })
 };
