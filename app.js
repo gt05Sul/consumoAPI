@@ -1,19 +1,27 @@
 const apiUrl = "https://67084a4f8e86a8d9e42e96a5.mockapi.io/api/users";
 let usuarios= [];
 
-function fetchUsuarios()
+ async function fetchUsuarios()
 {
-    fetch(apiUrl)
-    .then(res => res.json())
-    .then(data => {
-        usuarios = data;    
-        displayUsers(usuarios)
-    })
+    // fetch(apiUrl)
+    // .then(res => res.json())
+    // .then(data => {
+    //     usuarios = data;    
+    //     displayUsers(usuarios)
+    // })
     
-    .catch(error => {
-        console.error('error' , error)
-        alert('nao foi possivel')
-    });
+    // .catch(error => {
+    //     console.error('error' , error)
+    //     alert('nao foi possivel')
+    // });
+
+    try {   
+        const response = await axios.get(apiUrl);
+        usuarios = response.data;
+        displayUsers(usuarios)
+    } catch (error) {
+        Swal.fire('erro' , 'nao foi possivel buascar usuario' , "error")
+    }
 }
 fetchUsuarios()
 
