@@ -1,16 +1,26 @@
 const apiUrl = "https://67084a4f8e86a8d9e42e96a5.mockapi.io/api/users";
 let usuarios = [];
-function fetchUsuarios() {
-    fetch(apiUrl)
-    .then(res => res.json())
-    .then(data => {
-        usuarios = data;
+
+
+async function fetchUsuarios() {
+    // fetch(apiUrl)
+    // .then(res => res.json())
+    // .then(data => {
+    //     usuarios = data;
+    //     displayUsers(usuarios)
+    // })
+    // .catch(error => {
+    //     console.error("Erro", error)
+    //     alert("Não foi possível carregar o usuário!")
+    // })
+
+    try {
+        const response = await axios.get(apiUrl);
+        usuarios = response.data;
         displayUsers(usuarios)
-    })
-    .catch(error => {
-        console.error("Erro", error)
-        alert("Não foi possível carregar o usuário!")
-    })
+    } catch (error) {
+        Swal.fire("Erro", "Não foi possível buscar usuários", "error")
+    }
 }
 function displayUsers(usuarios) {
     const userList = document.getElementById("listaDeUsuarios");
