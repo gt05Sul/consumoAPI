@@ -47,7 +47,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="userModalLabel">Adicionar Usuário</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="fechar()" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Campo oculto para armazenar o ID do usuário em edição -->
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" onclick="fechar()" data-bs-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary" id="saveUserButton"
                         onclick="saveUser()">Salvar</button>
                 </div>

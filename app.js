@@ -3,6 +3,7 @@ let usuarios = [];
 const usuariosPorPagina = 9;
 const paginaAtual = 1;
 
+const modal = document.getElementById('userModal')
 
 async function fetchUsuarios() {
     // fetch(apiUrl)
@@ -23,6 +24,7 @@ async function fetchUsuarios() {
     } catch (error) {
         Swal.fire("Erro", "Não foi possível buscar usuários", "error")
     }
+    
 }
 
 function displayPaginado(page = 1){
@@ -60,6 +62,47 @@ function displayUsers(usuarios) {
         `
         userList.appendChild(usuario);
     })
+}
+
+function showCreateModal(){
+    modal.style.display = 'block'
+    modal.className = 'modal'
+}
+
+function fechar(){
+    modal.style.display = 'none'
+}
+
+async function postUsuario(){
+
+    const firstName = document.getElementById('name').value  
+    const email = document.getElementById('email').value
+    const phone = document.getElementById("phone").value
+    const avatar = document.getElementById('avatar').value
+
+    const payload = {
+        firstName,
+        email,
+        phone,
+        avatar
+    }
+
+    console.log(payload);
+    
+
+    const method ={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }
+
+    await fetch(apiUrl, method)
+}
+
+function saveUser(){
+    postUsuario()
 }
 
 document.addEventListener("DOMContentLoaded", fetchUsuarios)
