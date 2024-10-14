@@ -82,11 +82,27 @@ function displayUsers(usuarios)
             <h3>${user.firstName} ${user.lastName}</h3>
             <p>Email: ${user.email}</p>
             <p>Telefone: ${user.phone}</p>
+            <button type="button" class="btn btn-danger" id="delete-${user.id}">Deletar</button>`;
 
-            `
+            
             userList.appendChild(usuario);
+
+            const deleteButton = document.getElementById(`delete-${user.id}`);
+            deleteButton.addEventListener('click', () => deleteUser(user.id));
     })
-}
+};
+
+
+async function deleteUser(id) {
+    try {
+        await axios.delete(`${apiUrl}/${id}`);
+        Swal.fire('Sucesso', 'Usuário deletado com sucesso', "success");
+        fetchUsuarios(); // Atualiza a lista de usuários após a deleção
+    } catch (error) {
+        Swal.fire('Erro', 'Não foi possível deletar o usuário', "error");
+    }
+};
+
 
 
 function showCreateModal() {
@@ -115,6 +131,7 @@ async function post(){
     
         const DadoEnviado = await axios.post(apiUrl, userData)
         Swal.fire('Sucesso' , 'Cadastrado com sucesso' , "success")
+        fetchUsuarios();
     } catch (erro){
         Swal.fire('Error' , 'Não foi possivel cadastrar usuário' , "error")
     }
