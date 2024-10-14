@@ -88,7 +88,7 @@ function displayUsers(usuarios)
             userList.appendChild(usuario);
 
             const deleteButton = document.getElementById(`delete-${user.id}`);
-            deleteButton.addEventListener('click', () => deleteUser(user.id));
+        deleteButton.addEventListener('click', () => deleteUser(user.id));
     })
 };
 
@@ -102,8 +102,6 @@ async function deleteUser(id) {
         Swal.fire('Erro', 'Não foi possível deletar o usuário', "error");
     }
 };
-
-
 
 function showCreateModal() {
     modal.style.display = 'block' 
