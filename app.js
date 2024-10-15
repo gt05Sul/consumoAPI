@@ -105,6 +105,7 @@ async function postUsuario(){
 
 function saveUser(){
     postUsuario()
+    modal.style.display = 'none'
 }
 
 document.addEventListener("DOMContentLoaded", fetchUsuarios)
