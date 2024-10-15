@@ -1,0 +1,6 @@
+#listaDeUsuarios > div{
+    border: 1px solid gray;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
