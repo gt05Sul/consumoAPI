@@ -79,9 +79,11 @@ async function postUsuario(){
     const email = document.getElementById('email').value
     const phone = document.getElementById("phone").value
     const avatar = document.getElementById('avatar').value
+    const lastName = document.getElementById('Sobrenome').value
 
     const payload = {
         firstName,
+        lastName,
         email,
         phone,
         avatar
