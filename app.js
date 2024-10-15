@@ -62,11 +62,6 @@ function displayPaginado(page = 1)
         }
         }
 
-
-
-
-
-
 fetchUsuarios()
 
 function displayUsers(usuarios)
@@ -77,20 +72,42 @@ function displayUsers(usuarios)
         const usuario = document.createElement('div')
         usuario.className = 'col-md-4 mb-3'; 
         usuario.innerHTML = `
-            <img src="${user.avatar}" alt="${user.firstName}" class="img rounded-circle" style="max-width: 150px;">
+            <img src="${user.avatar}" alt="${user.firstName}" style="max-width: 200px; heigth: 400px; border-radius: 60%">
 
             <h3>${user.firstName} ${user.lastName}</h3>
             <p>Email: ${user.email}</p>
             <p>Telefone: ${user.phone}</p>
-            <button type="button" class="btn btn-danger" id="delete-${user.id}">Deletar</button>`;
+            <button type="button" class="btn btn-danger" id="delete-${user.id}">Deletar</button>
+            <button type="button" class="btn btn-primary" id="atualizar-${user.id}">Atualizar</button>`;
+            
 
             
             userList.appendChild(usuario);
 
         const deleteButton = document.getElementById(`delete-${user.id}`);
         deleteButton.addEventListener('click', () => deleteUser(user.id));
+
+        const upDateButton = document.getElementById(`atualizar-${user.id}`);
+        upDateButton.addEventListener('click', () => upDate(user.id));
+
     })
 };
+
+    async function upDate(id) {
+        try {
+            await axios.put(`${apiUrl}/${id}`);
+            // Swal.fire('Sucesso', 'Usuário deletado com sucesso', "success");
+            // fetchUsuarios(); // Atualiza a lista de usuários após a deleção
+        } catch (error) {
+            Swal.fire('Erro', 'Não foi possível deletar o usuário', "error");
+        }
+    };
+
+    
+   
+    
+
+
 
 
 async function deleteUser(id) {
